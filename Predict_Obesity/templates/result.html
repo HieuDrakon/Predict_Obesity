@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Obesity Predictor</title>
+	<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+	<style>
+		@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+		/* General Button Styling */
+		.btn {
+			display: inline-block;
+			padding: 12px 20px;
+			margin: 10px 0;
+			font-size: 16px;
+			color: #fff;
+			text-align: center;
+			border-radius: 8px;
+			background-color: #4CAF50;
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+			cursor: pointer;
+			transition: background-color 0.3s, transform 0.3s;
+		}
+
+		.btn:hover {
+			background-color: #45a049;
+			transform: translateY(-2px);
+		}
+
+		.btn:active {
+			transform: translateY(0);
+		}
+
+		/* Body and General Styling */
+		body {
+			font-family: 'Open Sans', sans-serif;
+			background: #f0f8ff;
+			color: #333;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			min-height: 100vh;
+			margin: 0;
+			flex-direction: column;
+		}
+
+		.results {
+			text-align: center;
+			margin-bottom: 20px;
+		}
+
+		.danger {
+			color: #e74c3c;
+			font-weight: bold;
+		}
+
+		.safe {
+			color: #2ecc71;
+			font-weight: bold;
+		}
+
+
+		label {
+			font-size: 16px;
+			display: block;
+			margin: 10px 0 5px;
+			color: #34495e;
+		}
+
+		.footer {
+			margin-top: 20px;
+			font-size: 14px;
+			color: #7f8c8d;
+		}
+
+		/* Responsive Design */
+		@media (max-width: 768px) {
+			.login {
+				width: 90%;
+			}
+		}
+
+		@media (max-width: 480px) {
+			.btn {
+				width: 100%;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<div class="results">
+		<div>
+			{% if prediction == 1 %}
+				<h1>Kết quả dự báo: <span class="safe">Ồ, bạn bị thiếu cân.</span></h1>
+			{% elif prediction == 2 %}
+				<h1>Kết quả dự báo: <span class="safe">Chúc mừng bạn, bạn không bị thừa hoặc thiếu cân.</span></h1>
+			{% elif prediction == 3 %}
+				<h1>Kết quả dự báo: <span class="danger">Ồ, bạn bị thừa cân.</span></h1>
+			{% elif prediction == 4 %}
+				<h1>Kết quả dự báo: <span class="danger">Ồ, bạn bị béo phì rồi.</span></h1>
+			{% endif %}
+		</div>
+		<div> 
+			<a href="/" class="btn">Trở về</a>
+		</div>
+	</div>
+</body>
+
+</html>
