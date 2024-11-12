@@ -28,13 +28,22 @@ X_train_scaled = scaler.fit_transform(X_train)
 X_test_scaled = scaler.transform(X_test)
 
 # Dummy Classifier
+print("---------- Dummy Classifier -----------")
 dummy_clf = DummyClassifier(strategy='most_frequent')
 dummy_clf.fit(X_train_scaled, y_train)
+y_dummy_pred = dummy_clf.predict(X_test_scaled)
+print("Đánh giá Dummy Classifier")
+print(classification_report(y_test, y_dummy_pred))
+print(confusion_matrix(y_test, y_dummy_pred))
 
 # SVC Classifier
+print("---------- SVC (Support Vector Classifier) -----------")
 svc_clf = SVC(kernel='linear')
 svc_clf.fit(X_train_scaled, y_train)
-
+y_svc_pred = svc_clf.predict(X_test_scaled)
+print("Đánh giá SVC")
+print(classification_report(y_test, y_svc_pred))
+print(confusion_matrix(y_test, y_svc_pred))
 # Lưu các mô hình vào file pickle
 os.makedirs('data_pkl', exist_ok=True)
 
